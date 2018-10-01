@@ -131,5 +131,11 @@ function generate() {
   find /usr/lib/jvm* -type f -name javac
 }
 
+function inspect_machine() {
+  grep -i processor /proc/cpuinfo
+  free -h
+  df -h
+}
 
 generate
+inspect_machine
