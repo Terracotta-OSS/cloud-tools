@@ -132,7 +132,7 @@ function generate() {
 }
 
 function inspect_machine() {
-  grep -i processor /proc/cpuinfo
+  grep -E "model name|processor" /proc/cpuinfo 
   free -h
   df -h
 }
