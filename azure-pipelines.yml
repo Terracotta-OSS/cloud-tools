@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+# trigger:
+# - master
+
+
+
+# strategy:
+#   matrix:
+#     windows:
+#       image: windows-latest
+#     linux:
+#       image: ubuntu-latest
+
+
+# pool: 
+#   vmImage: $(image)
+      
+
+# steps:
+# - task: NodeTool@0 
+# - script: |
+#     echo Hello, world 2
+#     ls
+#     pwd
+#     node test/portallocate.js 20000 30000
+#   displayName: 'Test Port Allocation' 
+
+
+
+resources:
+  repositories:
+    - repository: templates
+      type: git   
+      name: terracotta/terracotta
+
+jobs:
+- template: build-templates/experimental.yml@templates
+  parameters:
+    jobName: 'PremisesLinuxMaven1'
+    pool: tc_agent_pool
+    demands: 
+    - AGENT_MEMORY_8
